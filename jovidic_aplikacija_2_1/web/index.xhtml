@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{lokalizacija.vazecaLokalizacija}">
+        <h:head>
+            <title>#{i18n.index_naslov}</title>
+            <h:outputStylesheet library="css" name="osnovna.css"/>
+        </h:head>
+        <h:body>
+            <div class="centered">
+                <h1>#{i18n.index_naslov}</h1>
+                <h:form>
+                    <h:selectOneRadio value="#{lokalizacija.odabraniJezik}">
+                        <f:selectItems value="#{lokalizacija.podrzaniJezici}">
+
+                        </f:selectItems>
+
+                    </h:selectOneRadio><br/>
+                    <h:commandButton class="link" value="#{i18n.index_odaberi_jezik}" action="#{lokalizacija.odaberiJezik}"></h:commandButton>
+
+
+                </h:form></div>
+
+        </h:body>
+    </f:view>
+</html>
+

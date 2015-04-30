@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <h:outputScript library="js" name="websocket.js"/>
+        <h:outputStylesheet library="css" name="osnovna.css"/>
+        <title>Pregled JMS poruke </title>
+    </h:head>
+    <h:body>
+                <h:link class="linkas" value="Naslovna" outcome="naslovna"></h:link>
+                   <br/>
+                      <br/>
+                      <h1> TRENUTNE JMS PORUKE </h1>
+
+        <h:form>
+            <h:dataTable class="tablica" headerClass="zaglavlje"
+                                 rowClasses="neparni,parni" id="mails" value="#{pregledPoruka.listaPoruka}" var="p"  border="1">
+                <h:column >
+                    <f:facet name="header">Početak</f:facet>
+                    <h:outputText value="#{p.pocetak}"/>
+                </h:column>
+
+                <h:column >
+                    <f:facet name="header">Kraj</f:facet>
+                    <h:outputText value="#{p.kraj}"/>
+                </h:column>
+
+                <h:column >
+                    <f:facet name="header">Ispravne poruke</f:facet>
+                    <h:outputText value="#{p.ispravnePoruke}"/>
+                </h:column>
+
+                <h:column >
+                    <f:facet name="header">Neispravne poruke</f:facet>
+                    <h:outputText value="#{p.neispravnePoruke}"/>
+                </h:column>
+
+                <h:column >
+                    <f:facet name="header">Ukupno poruka</f:facet>
+                    <h:outputText value="#{p.svePoruke}"/>
+                </h:column>
+                <h:column >
+                    <f:facet name="header">Preuzete poruke</f:facet>
+                    <h:outputText value="#{p.preuzetePoruke}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>

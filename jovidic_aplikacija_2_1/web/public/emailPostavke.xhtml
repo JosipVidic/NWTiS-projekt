@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{lokalizacija.vazecaLokalizacija}">
+        <h:head>
+            <title>#{i18n.emailPostavke_naslov}</title>
+            <h:outputStylesheet library="css" name="osnovna.css"/>
+        </h:head>
+        <h:body>
+
+            <div class="div">
+
+                <h:form>
+                      <h:link class="link" value="#{i18n.emailPostavke_natragOdabirJezika}" outcome="povratak"></h:link>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{i18n.emailPostavke_posluzitelj}"></h:outputLabel>
+                        <h:inputText value="#{emailPovezivanje.emailPosluzitelj}" required="true" requiredMessage="#{i18n.validacijaPosluzitelj}" validatorMessage="#{i18n.validacijaPosluzitelj}">
+                            <f:validateRegex pattern="^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"/>
+                        </h:inputText>
+                        <h:outputLabel value="#{i18n.emailPostavke_korisnik}"></h:outputLabel>
+                        <h:inputText value="#{emailPovezivanje.korisnickoIme}" required="true" requiredMessage="#{i18n.validacijaEmail}" validatorMessage="#{i18n.validacijaEmail}" >
+                        <f:validateRegex pattern="(^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$)"  />
+                        </h:inputText>
+                        <h:outputLabel value="#{i18n.emailPostavke_lozinka}"></h:outputLabel>
+                        <h:inputSecret value="#{emailPovezivanje.lozinka}" required="true" requiredMessage="#{i18n.validacijaLozinka}"  validatorMessage="#{i18n.validacijaLozinka}">
+                            <f:validateLength minimum="5" maximum="10" />
+                        </h:inputSecret>
+                        <h:commandButton class="gumb" value="#{i18n.emailPostavke_citaj}" action="#{emailPovezivanje.citajPoruke()}"></h:commandButton>
+                    </h:panelGrid>
+                </h:form>
+            </div>
+        </h:body>
+    </f:view>
+</html>
+

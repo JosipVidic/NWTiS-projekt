@@ -1,0 +1,11 @@
+odlaznePoruke=SENT
+pocetnaMapa=NWTIS
+velicinaStranice=6
+interval=60
+email_port=143
+korisnickaLozinka=123456
+korisnickoIme=jovidic@nwtis.nastava.foi.hr
+emailPosluzitelj=127.0.0.1
+email_subject_nwtis=NWTIS
+email_folder_nwtis=NWTIS
+email_folder_other=NWTIS_Neispravne

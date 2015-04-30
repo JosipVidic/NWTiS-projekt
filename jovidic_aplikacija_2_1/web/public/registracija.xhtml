@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+    <f:view locale="#{lokalizacija.vazecaLokalizacija}">
+    <h:head>
+        <title>#{i18n.registracija_naslov}</title>
+        <h:outputStylesheet library="css" name="osnovna.css"/>
+    </h:head>
+
+        <h:body>
+            <div class="centered">
+            <h:form>
+                <h:outputLabel for="username" value="#{i18n.registracija_username} "/>
+                <h:inputText id="username" value="#{registracija.korIme}"/><br/>
+
+                <h:outputLabel for="password" value="#{i18n.registracija_pass} "/>
+                <h:inputText id="password" value="#{registracija.lozinka}"/><br/>
+
+                <h:outputLabel for="password2" value="#{i18n.registracija_pas} "/>
+                <h:inputText id="password2" value="#{registracija.lozinkaPotvrda}"/><br/>
+                <h:commandButton value="#{i18n.registracija_registriraj}" action="#{registracija.registriraj()}"/>
+            </h:form>
+            </div>
+        </h:body>
+    </f:view>
+</html>
+

@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+    <f:view encoding="ISO-8859-1">
+    <h:head>
+        <h:outputStylesheet library="css" name="osnovna.css"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>socket</title>
+    </h:head>
+    <h:body>
+        <h:link class="linkas" value="Naslovna" outcome="naslovna"></h:link>
+        <br/>
+        <br/>
+
+        <h:form id="main">
+
+            <h1> SLANJE KOMANDI </h1>
+            <h:selectOneMenu value="#{slanjeKomandi.odabranaKomanda}">
+                <f:selectItem itemValue="#{slanjeKomandi.getAdresa}"/>
+                <f:selectItem itemValue="#{slanjeKomandi.test}"/>
+                <f:selectItem itemValue="#{slanjeKomandi.addAdresa}"/>
+                <f:selectItem itemValue="#{slanjeKomandi.addUser}"/>
+                <f:selectItem itemValue="#{slanjeKomandi.getAdresawLogin}"/>
+                <f:selectItem itemValue="#{slanjeKomandi.pause}"/>
+                <f:selectItem itemValue="#{slanjeKomandi.start}"/>
+                <f:selectItem itemValue="#{slanjeKomandi.stop}"/>
+                <f:selectItem itemValue="#{slanjeKomandi.neispravna}"/>
+            </h:selectOneMenu>
+            <h:commandButton class="link" value="Odaberi " action="#{slanjeKomandi.odaberiKomandu()}">
+                <f:ajax event="keyup" render="main" />
+            </h:commandButton>
+            <br/>
+            <br/>
+
+
+            <h:form id="response" rendered="#{slanjeKomandi.responseFlag}">
+                <h2> RESPONSE </h2>
+                <h:outputLabel value="#{slanjeKomandi.response}"/>
+
+            </h:form>
+
+            <br/>
+
+            <h:form id="getadresa" rendered="#{slanjeKomandi.getAdresaFlag}">
+                <h2> GET ADRESA </h2>
+                <h:outputText value="Korisnik: "/>
+                <h:inputText value="#{slanjeKomandi.korisnik}"></h:inputText>
+                <br/>
+                <h:outputText value="Adresa: "/>
+                <h:inputText value="#{slanjeKomandi.adresa}"></h:inputText>
+                <h:commandButton value="Posalji komandu" action="#{slanjeKomandi.odaberiSlanje()}">
+
+
+                </h:commandButton>
+
+
+            </h:form>            
+            <h:form id="getadresarwLogin" rendered="#{slanjeKomandi.getAdresaLoginFlag}">
+                <h2> GET ADRESA LOGIN </h2>
+                <h:outputText value="Korisnik: "/>
+                <h:inputText value="#{slanjeKomandi.korisnikAddUser}"></h:inputText>
+                <br/>
+                <h:outputText value="Lozinka: "/>
+                <h:inputText value="#{slanjeKomandi.lozinkaAddUser}" ></h:inputText>
+                <br/>
+                <h:outputText value="Adresa: "/>
+                <h:inputText value="#{slanjeKomandi.adresa}"></h:inputText>
+                <h:commandButton value="Posalji komandu" action="#{slanjeKomandi.odaberiSlanje()}">
+
+
+                </h:commandButton>
+
+
+            </h:form>  
+            <h:form id="addUser" rendered="#{slanjeKomandi.addUserFlag}">
+                <h2> ADD USER </h2>
+                <h:outputText value="Korisnik: "/>
+                <h:inputText value="#{slanjeKomandi.korisnikAddUser}"></h:inputText>
+                <br/>
+                <h:outputText value="Lozinka: "/>
+                <h:inputText value="#{slanjeKomandi.lozinkaAddUser}"></h:inputText>
+                <br/>
+                <h:outputText value="Novi korisnik:"/>
+                <h:inputText value="#{slanjeKomandi.noviAddUser}"></h:inputText>
+                <br/>
+                <h:outputText value="Nova adresa: "/>
+                <h:inputText value="#{slanjeKomandi.novaAddUser}"></h:inputText>
+                <h:commandButton value="Posalji komandu" action="#{slanjeKomandi.odaberiSlanje()}">
+
+
+                </h:commandButton>
+
+
+            </h:form>  
+            <h:form id="addAdresa" rendered="#{slanjeKomandi.addAdresaFlag}">
+                <h2> ADD ADRESA </h2>
+                <h:outputText value="Korisnik: "/>
+                <h:inputText value="#{slanjeKomandi.korisnikAddUser}"></h:inputText>
+                <br/>
+                <h:outputText value="Lozinka: "/>
+                <h:inputText value="#{slanjeKomandi.lozinkaAddUser}"></h:inputText>
+                <br/>
+                <h:outputText value="Adresa: "/>
+                <h:inputText value="#{slanjeKomandi.adresa}"></h:inputText>
+                <h:commandButton value="Posalji komandu" action="#{slanjeKomandi.odaberiSlanje()}">
+
+                </h:commandButton>
+            </h:form>  
+
+            <h:form id="pause" rendered="#{slanjeKomandi.pauseFlag}">
+                <h2> PAUSE </h2>
+                <h:outputText value="Korisnik: "/>
+                <h:inputText value="#{slanjeKomandi.korisnikAddUser}"></h:inputText>
+                <br/>
+                <h:outputText value="Lozinka: "/>
+                <h:inputText value="#{slanjeKomandi.lozinkaAddUser}"></h:inputText>
+                <h:commandButton value="Posalji komandu" action="#{slanjeKomandi.odaberiSlanje()}">
+
+                </h:commandButton>
+            </h:form> 
+            <h:form id="start" rendered="#{slanjeKomandi.startFlag}">
+                <h2> START </h2>
+                <h:outputText value="Korisnik: "/>
+                <h:inputText value="#{slanjeKomandi.korisnikAddUser}"></h:inputText>
+                <br/>
+                <h:outputText value="Lozinka: "/>
+                <h:inputText value="#{slanjeKomandi.lozinkaAddUser}"></h:inputText>
+                <h:commandButton value="Posalji komandu" action="#{slanjeKomandi.odaberiSlanje()}">
+
+                </h:commandButton>
+            </h:form> 
+            <h:form id="stop" rendered="#{slanjeKomandi.stopFlag}">
+                <h2> STOP </h2>
+                <h:outputText value="Korisnik: "/>
+                <h:inputText value="#{slanjeKomandi.korisnikAddUser}"></h:inputText>
+                <br/>
+                <h:outputText value="Lozinka: "/>
+                <h:inputText value="#{slanjeKomandi.lozinkaAddUser}"></h:inputText>
+                <h:commandButton value="Posalji komandu" action="#{slanjeKomandi.odaberiSlanje()}">
+
+                </h:commandButton>
+            </h:form> 
+            <h:form id="neispravna" rendered="#{slanjeKomandi.neispravnaFlag}">
+                <h2> Pošalji proizvoljnu komandu </h2>
+                <h:inputText value="#{slanjeKomandi.korisnikAddUser}"></h:inputText>
+                <h:commandButton value="Posalji komandu" action="#{slanjeKomandi.odaberiSlanje()}">
+
+                </h:commandButton>
+            </h:form>
+            <h:form id="test" rendered="#{slanjeKomandi.testFlag}">
+                <h2> TEST ADRESA </h2>
+                <h:outputText value="Korisnik: "/>
+                <h:inputText value="#{slanjeKomandi.korisnikAddUser}"></h:inputText>
+                <br/>
+                <h:outputText value="Lozinka: "/>
+                <h:inputText value="#{slanjeKomandi.lozinkaAddUser}"></h:inputText>
+                <br/>
+                <h:outputText value="Adresa: "/>
+                <h:inputText value="#{slanjeKomandi.adresa}"></h:inputText>
+                <h:commandButton value="Posalji komandu" action="#{slanjeKomandi.odaberiSlanje()}">
+
+                </h:commandButton>
+            </h:form> 
+
+        </h:form>
+    </h:body>
+    </f:view>
+</html>
+

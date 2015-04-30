@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2.6-1b01  svn-revision#13094. --><xs:schema xmlns:tns="http://servisi.jovidic.nwtis.foi.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://servisi.jovidic.nwtis.foi.org/">
+
+<xs:element name="dajMeteoIzmeduDatuma" type="tns:dajMeteoIzmeduDatuma"/>
+
+<xs:element name="dajMeteoIzmeduDatumaResponse" type="tns:dajMeteoIzmeduDatumaResponse"/>
+
+<xs:element name="dajNmeteoZaAdresu" type="tns:dajNmeteoZaAdresu"/>
+
+<xs:element name="dajNmeteoZaAdresuResponse" type="tns:dajNmeteoZaAdresuResponse"/>
+
+<xs:element name="dajRangAdresa" type="tns:dajRangAdresa"/>
+
+<xs:element name="dajRangAdresaResponse" type="tns:dajRangAdresaResponse"/>
+
+<xs:element name="dajSveAdrese" type="tns:dajSveAdrese"/>
+
+<xs:element name="dajSveAdreseResponse" type="tns:dajSveAdreseResponse"/>
+
+<xs:element name="dajSveMeteo" type="tns:dajSveMeteo"/>
+
+<xs:element name="dajSveMeteoPodatkeZaAdresu" type="tns:dajSveMeteoPodatkeZaAdresu"/>
+
+<xs:element name="dajSveMeteoPodatkeZaAdresuResponse" type="tns:dajSveMeteoPodatkeZaAdresuResponse"/>
+
+<xs:element name="dajSveMeteoResponse" type="tns:dajSveMeteoResponse"/>
+
+<xs:element name="dajVazeceMeteoPodatkeZaAdresu" type="tns:dajVazeceMeteoPodatkeZaAdresu"/>
+
+<xs:element name="dajVazeceMeteoPodatkeZaAdresuResponse" type="tns:dajVazeceMeteoPodatkeZaAdresuResponse"/>
+
+<xs:element name="dajZadnjeVazecePodatkeZaAdresu" type="tns:dajZadnjeVazecePodatkeZaAdresu"/>
+
+<xs:element name="dajZadnjeVazecePodatkeZaAdresuResponse" type="tns:dajZadnjeVazecePodatkeZaAdresuResponse"/>
+
+<xs:element name="provjeriAdresu" type="tns:provjeriAdresu"/>
+
+<xs:element name="provjeriAdresuResponse" type="tns:provjeriAdresuResponse"/>
+
+<xs:complexType name="dajMeteoIzmeduDatuma">
+<xs:sequence>
+<xs:element name="odDatuma" type="xs:string" minOccurs="0"/>
+<xs:element name="doDatuma" type="xs:string" minOccurs="0"/>
+<xs:element name="adresa" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajMeteoIzmeduDatumaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:weatherData" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="weatherData">
+<xs:sequence>
+<xs:element name="adresaMeteoPodatka" type="xs:string" minOccurs="0"/>
+<xs:element name="altimeter" type="xs:float" minOccurs="0"/>
+<xs:element name="altimeterRate" type="xs:float" minOccurs="0"/>
+<xs:element name="datumUnosa" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="dewPoint" type="xs:float" minOccurs="0"/>
+<xs:element name="dewPointRate" type="xs:float" minOccurs="0"/>
+<xs:element name="feelsLike" type="xs:float" minOccurs="0"/>
+<xs:element name="heatIndex" type="xs:float" minOccurs="0"/>
+<xs:element name="humidity" type="xs:float" minOccurs="0"/>
+<xs:element name="humidityRate" type="xs:float" minOccurs="0"/>
+<xs:element name="iconCode" type="xs:string" minOccurs="0"/>
+<xs:element name="key" type="xs:string" minOccurs="0"/>
+<xs:element name="observationTimeAdjustedLocal" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="observationTimeAdjustedLocalStr" type="xs:string" minOccurs="0"/>
+<xs:element name="observationTimeLocal" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="observationTimeLocalStr" type="xs:string" minOccurs="0"/>
+<xs:element name="observationTimeUtc" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="observationTimeUtcStr" type="xs:string" minOccurs="0"/>
+<xs:element name="pressureSeaLevel" type="xs:float" minOccurs="0"/>
+<xs:element name="pressureSeaLevelRate" type="xs:float" minOccurs="0"/>
+<xs:element name="providerId" type="xs:int"/>
+<xs:element name="rainDaily" type="xs:float" minOccurs="0"/>
+<xs:element name="rainMonthly" type="xs:float" minOccurs="0"/>
+<xs:element name="rainRate" type="xs:float" minOccurs="0"/>
+<xs:element name="rainYearly" type="xs:float" minOccurs="0"/>
+<xs:element name="snowDaily" type="xs:float" minOccurs="0"/>
+<xs:element name="snowMonthly" type="xs:float" minOccurs="0"/>
+<xs:element name="snowRate" type="xs:float" minOccurs="0"/>
+<xs:element name="snowYearly" type="xs:float" minOccurs="0"/>
+<xs:element name="stationId" type="xs:string" minOccurs="0"/>
+<xs:element name="temperature" type="xs:float" minOccurs="0"/>
+<xs:element name="temperatureRate" type="xs:float" minOccurs="0"/>
+<xs:element name="visibility" type="xs:float" minOccurs="0"/>
+<xs:element name="visibilityRate" type="xs:float" minOccurs="0"/>
+<xs:element name="windChill" type="xs:float" minOccurs="0"/>
+<xs:element name="windDirection" type="xs:float" minOccurs="0"/>
+<xs:element name="windDirectionAvg" type="xs:float" minOccurs="0"/>
+<xs:element name="windGustDaily" type="xs:float" minOccurs="0"/>
+<xs:element name="windGustDirectionDaily" type="xs:float" minOccurs="0"/>
+<xs:element name="windGustDirectionHourly" type="xs:float" minOccurs="0"/>
+<xs:element name="windGustHourly" type="xs:float" minOccurs="0"/>
+<xs:element name="windGustTimeLocalDaily" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="windGustTimeLocalDailyStr" type="xs:string" minOccurs="0"/>
+<xs:element name="windGustTimeLocalHourly" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="windGustTimeLocalHourlyStr" type="xs:string" minOccurs="0"/>
+<xs:element name="windGustTimeUtcDaily" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="windGustTimeUtcDailyStr" type="xs:string" minOccurs="0"/>
+<xs:element name="windGustTimeUtcHourly" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="windGustTimeUtcHourlyStr" type="xs:string" minOccurs="0"/>
+<xs:element name="windSpeed" type="xs:float" minOccurs="0"/>
+<xs:element name="windSpeedAvg" type="xs:float" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajRangAdresa">
+<xs:sequence>
+<xs:element name="top" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajRangAdresaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajVazeceMeteoPodatkeZaAdresu">
+<xs:sequence>
+<xs:element name="adresa" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajVazeceMeteoPodatkeZaAdresuResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:weatherData" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajNmeteoZaAdresu">
+<xs:sequence>
+<xs:element name="top" type="xs:string" minOccurs="0"/>
+<xs:element name="adresa" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajNmeteoZaAdresuResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:weatherData" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajSveAdrese">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="dajSveAdreseResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:adresa" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="adresa">
+<xs:sequence>
+<xs:element name="adresa" type="xs:string" minOccurs="0"/>
+<xs:element name="geoloc" type="tns:location" minOccurs="0"/>
+<xs:element name="idadresa" type="xs:long"/>
+<xs:element name="lat" type="xs:string" minOccurs="0"/>
+<xs:element name="lon" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="location">
+<xs:sequence>
+<xs:element name="latitude" type="xs:string" minOccurs="0"/>
+<xs:element name="longitude" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajSveMeteo">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="dajSveMeteoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:weatherData" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="provjeriAdresu">
+<xs:sequence>
+<xs:element name="adresa" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="provjeriAdresuResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajSveMeteoPodatkeZaAdresu">
+<xs:sequence>
+<xs:element name="adresa" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajSveMeteoPodatkeZaAdresuResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:weatherData" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajZadnjeVazecePodatkeZaAdresu">
+<xs:sequence>
+<xs:element name="adresa" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajZadnjeVazecePodatkeZaAdresuResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:weatherData" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

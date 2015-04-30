@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{lokalizacija.vazecaLokalizacija}">   
+        <h:head>
+            <title>#{i18n.pregledPorukeNaslov}</title>
+            <h:outputStylesheet library="css" name="osnovna.css"/>
+        </h:head>
+        <h:body>
+            <div class="div">
+                <h1>#{i18n.pregledPoruke_naslov}</h1>
+                <h:form>                    
+                    <h:panelGrid columns="2" border="1" class="tablica">
+                        <h:column>
+                            <h:outputText  value="#{i18n.pregledPoruke_ID}"/>
+                        </h:column>
+                        <h:column>
+                            <h:outputText value="#{pregledPoruke.poruka.id}"/>
+                        </h:column>
+                        <h:column>
+                            <h:outputText  value="#{i18n.pregledPoruke_salje}"/>
+                        </h:column>
+                        <h:column>
+                            <h:outputText value="#{pregledPoruke.poruka.salje}"/>
+                        </h:column>
+                        <h:column>
+                            <h:outputText value="#{i18n.pregledPoruke_naslov}"/>
+                        </h:column>
+                        <h:column>
+                            <h:outputText value="#{pregledPoruke.poruka.predmet}"/>
+                        </h:column>
+                        <h:column>
+                            <h:outputText value="#{i18n.pregledPoruke_velicina}"/>
+                        </h:column>
+                        <h:column>
+                            <h:outputText value="#{pregledPoruke.poruka.velicina}"/>
+                        </h:column>        
+                        <h:column>
+                            <h:outputText  value="#{i18n.pregledPoruke_sadrzaj}"/>
+                        </h:column>
+                        <h:column>
+                            <h:outputText value="#{pregledPoruke.poruka.sadrzaj}"/>
+                        </h:column>
+                    </h:panelGrid>
+                    <br/>
+                    <h:link class="link" value="#{i18n.pregledPoruke_povratakPregledSvih}" outcome="pregledSvih"></h:link>
+                </h:form>
+            </div>
+        </h:body>
+    </f:view>
+</html>
+

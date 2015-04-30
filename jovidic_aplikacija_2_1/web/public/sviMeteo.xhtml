@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <f:view locale="#{lokalizacija.vazecaLokalizacija}">
+    <h:head>
+        <title>#{i18n.meteo_Naslov}</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+
+
+            <p:dataTable var="m" value="#{public.sviMeteo}" paginator="true" rows="20"
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         rowsPerPageTemplate="20,50,100,200"  id="meteo"
+                         widgetVar="carsTable"
+                         emptyMessage="#{i18n.meteo_Poruka}" filteredValue="#{public.filtriranje}"
+                         
+                         >
+
+
+                <p:column headerText="#{i18n.meteo_Adresa}" filterBy="#{m.adresaMeteoPodatka}" filterMatchMode="contains" sortBy="#{m.adresaMeteoPodatka}">
+                    <h:outputText value="#{m.adresaMeteoPodatka}" />
+                </p:column>
+                <p:column headerText="#{i18n.meteo_Temp}">
+                    <h:outputText value="#{m.temperature}" />
+                </p:column>
+                <p:column headerText="#{i18n.meteo_Vlaga}">
+                    <h:outputText value="#{m.humidity}" />
+                </p:column>
+                <p:column headerText="#{i18n.meteo_Vjetar}">
+                    <h:outputText value="#{m.windSpeed}" />
+                </p:column>
+                     <p:column headerText="#{i18n.meteo_Tlak}">
+                     <h:outputText value="#{m.pressureSeaLevel}" />
+                </p:column>
+                <p:column headerText="#{i18n.meteo_Datum}">
+                    <h:outputText value="#{m.datumUnosa}" />
+                </p:column>
+           
+
+            </p:dataTable>
+        </h:form>
+    </h:body>
+    </f:view>
+</html>
+

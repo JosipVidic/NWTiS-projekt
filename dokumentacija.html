@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Josip Vidić</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <div>
+            
+            <h1>Projekt: NWTiS_2013_2014 Josip Vidić</h1>
+Sustav se treba sastojati od sljedećih aplikacija:
+
+
+1. web aplikacija ({korisnicko_ime}_aplikacija_1) u pozadinskom modu (tj.
+servletu s automatskim startanjem ili putem slušača), pokreće dretvu (konfiguracijom se
+određuje pravilni vremenski interval (jedinica je sekunda) preuzimanja podataka, npr. 30
+sec, 100 sec, 2 min,10 min, 30 min, 60 min, ...) koja preuzima važeće meteorološke podatke
+od WeatherBug REST web servisa (u prilogu se nalazi opis postupka) za izabrani skup
+adresa iz svijeta. U tablici {korisnicko_ime}_adrese nalaze se podaci o adresama
+(id, adresa, koordinate, korisnik tko je zatražio i sl) koje su tražene. Potrebno je spremati
+minimalno 5 meteoroloških podataka (temp, tlak, vlaga, vjetar, kiša, snijeg i sl) u bazu
+podataka. Upravljanje pozadinskom dretvom provodi se putem primitivnog poslužitelja koji
+ima ulogu socket servera na određenom portu (postavkom se određuje). Kada poslužitelj
+primi zahtjev od klijenta zapisuje podatke u dnevnik rada u bazu podataka. Na svaki zahtjev
+odgovara se u obliku
+<br/>
+OK nn [dodatni dio koji ovisi o vrsti zahtjeva]
+<br/>
+nn je status odgovora za primljeni zahtjev. Za administratorski zahtjev prvo treba obaviti
+autentikaciju korisnika prema bazi podataka te se ako je u redu, šalje email poruka (adresa
+primatelja i predmet poruke određuju se postavkama) u MIME tipu „text/plain“ s
+informacijama o komandi (vrijeme izvršavanja, trajanje prethodnog stanja, broj primljenih,
+neispravnih i izvršenih korisničkih komandi). Provođenje spomenutih operacija ne smije
+utjecati na sposobnost poslužitelja da primi nove zahtjeve. Zahtjev se temelji na komandama
+(isključivo u jednom retku), koje mogu biti:
+administratorske:
+<br/>
+USER korisnik; PASSWD lozinka; {PAUSE; | START; | STOP;
+| ADD „adresa“; | TEST „adresa“; | GET „adresa“; | ADD
+korisnik1; NEWPASSWD lozinka1;}
+<br/>
+korisničke:
+<br/>
+USER korisnik; GET „adresa“;
+<br/>
+Objašnjenje komandi:
+<br/>
+• USER korisnik; PASSWD lozinka; – autentikacija korisnika s
+administratorskim ovlastima. Prelazi na obradu komande ako postoji korisnik i
+odgovara lozinka, odnosno vraća ERR 30 ako ne postoji korisnik ili ne odgovara
+lozinka.
+<br/>
+• PAUSE; – privremeno prekida preuzimanje meteoroloških podataka od sljedećeg
+ciklusa (i dalje može preuzimati korisničke komande). Vraća OK 10 ako nije bio u
+pauzi, odnosno ERR 40 ako je bio u pauzi.
+<br/>
+• START; – nastavlja s preuzimanjem meteoroloških podataka od sljedećeg ciklusa.
+Vraća OK 10 ako je bio u pauzi, odnosno ERR 41 ako nije bio u pauzi.
+<br/>
+• STOP; – potpuno prekida preuzimanje meteoroloških podataka i preuzimanje
+korisničkih komandi. Vraća OK 10 ako nije bio u postupku prekida, odnosno ERR 42
+ako je bio u postupku prekida.
+<br/>
+• ADD „adresa“; – dodaje adresu za preuzimanje meteoroloških podataka od
+sljedećeg ciklusa. Vraća OK 10 ako ne postoji u evidenciji za koje se preuzimaju
+meteorološki podaci, odnosno ERR 50 ako postoji i već se preuzimaju podaci.
+<br/>
+• TEST „adresa“; – vraća status za „adresa“ tj. da li se za nju preuzimaju
+podaci. Vraća OK 10 ako postoji u evidenciji za koje se preuzimaju meteorološki
+podaci, odnosno ERR 51 ako ne postoji.
+<br/>
+• GET „adresa“; – vraća zadnje meteorološke podatke za „adresa“. Vraća OK
+10 i
+TEMP {-}nn.nn VLAGA nn.nn TLAK nnnn.nn GEOSIR {-
+}nnn.nnnnnn GEODUZ {-}nnn.nnnnnn
+ako postoji u evidenciji za koje se preuzimaju meteorološki podaci, odnosno, ERR 52
+ako ne postoji.
+<br/>
+• ADD korisnik1; NEWPASSWD lozinka1; - dodaje korisnika s lozinkom u
+tablicu korisnika uz administratorske ovlasti.
+<br/>
+Drugi zadatak web aplikacije je pružanje SOAP web servisa za prikupljene meteorološke
+podatke kao što su operacije: popis svih adresa za koje se prikupljaju meteorološki podaci,
+trenutni meteorološki podaci za izabranu adresu, rang lista (prvih n) adresa za koje je
+prikupljeno najviše meteoroloških podataka, posljednjih n meteoroloških podataka za
+izabranu adresu, meteorološki podaci za adresu u nekom vremenskom intervalu (od Date,
+do Date) i sl. Potrebno je pripremiti u NetBeans-ima za testiranje vlastitog web servisa (u
+Web services kreirati novu grupu NWTiS i dodati vlastiti servis). Treći zadatak je vidljivi
+dio web aplikacije odnosno korisnički dio koji treba sadržavati unos i pregled adresa za koje
+se prikupljaju meteo podaci (na bazi adrese putem Google Maps API preuzimaju se podaci
+o geolokaciji, opis u prilogu), pregled prikupljenih meteoroloških podataka, pregled
+zahtjeva za server koji upravlja dretvom i pregled dnevnika korisničkih zahtjeva (kasnije
+opisano) putem JSP (bez skripleta) i displaytag-a uz filtriranje podataka (elementi za
+filtriranje: izabrana adresa, vremenski interval (od-do, u formatu dd.dd.MM.yyyy hh.mm.ss)
+u kojem su prikupljeni podaci i sl.), status i straničenje (izbor od od 5, 10, 20, 50, 100, svi).
+Filtriranje treba omogućiti korištenje od ni jednog pa do svih elemenata u istom pogledu.
+Korisnički dio web aplikacije treba biti zaštićen putem web/servlet kontejnera na bazi
+obrasca/forme za prijavljivanje uz pomoć JDBC pristupa do baze podataka te osiguranja
+sigurnog kanala (SSL uz vlastiti certifikat s imenom i prezimenom studenta). Četvrti
+zadatak je vođenje dnevnika korisničkih zahtjeva vidljivog dijela aplikacije na bazi
+aplikacijskog filtera uz zapis trajanje obrade zahtjeva u bazu podataka. U tablici
+prikupljenih meteoroloških podataka trebaju biti podaci za minimalno 20 adresa i za svaki
+od njih minimalno 100 preuzetih podataka u vremenskom intervalu većem od zadnjih 6 sati.
+<br/>
+<br/>
+2. enterprise aplikacija ({korisnicko_ime}_aplikacija_2) koja ima EJB i Web
+module. Aplikacija u pozadinskom modu (tj. servletu s automatskim startanjem ili putem
+slušača) pokreće dretvu (konfiguracijom se određuje pravilni vremenski interval rada
+(jedinica je sekunda), npr. 5 sec, 20 sec, 100 sec, ...) koja provjerava u poštanskom
+sandučiću (adresa poslužitelja, korisničko ime i lozinka definiraju se u konfiguracijskoj
+datoteci) pristiglu poštu. Od pristiglih email poruka one koje imaju predmet poruke prema
+postavkama i MIME tip „text/plain“ nazivamo NWTiS porukama. Obrađene NWTiS poruke
+treba prebaciti u mapu/direktorij prema postavkama za NWTiS poruke. Ostale ne-NWTiS
+poruke treba prebaciti u mapu/direktorij prema postavkama za ne-NWTiS poruke. Na kraju
+svake iteracije obrade email poruka treba poslati JMS poruku (naziv reda čekanja
+NWTiS_{korisnicko_ime}_1) s podacima o vremenu početka i završetka rada, broju
+pročitanih poruka, broju NWTiS poruka i sl. Poruka treba biti u obliku ObjectMessage, pri
+čemu je naziv klase proizvoljan, a njena struktura treba sadržavati potrebne podatke koji su
+prethodno spomenuti.
+<br/>
+Drugi zadatak je korisnički dio odnosno web modul, koji treba realizirati putem JSF
+(facelets) ili PrimeFaces uz minimalno dvojezičnu varijantu (hrvatski i engleski jezik). To
+znači da svi statički tekstovi u pogledima trebaju biti označeni kao „labele“ i dobiti jezične
+prijevode. Jezik se odabire na početnoj stranici aplikacije. U javnom dijelu aplikacije može
+se dobiti pregled adresa za koje se u {korisnicko_ime}_aplikacija_1 prikupljaju
+meteorološki podaci, zadnji meteorološki podaci za izabranu adresu iz skupa adresa i sl.
+Kod pregleda treba postojati straničenje i filtriranje adresa. Pri tome se koristi Ajax za
+preuzimanje podataka. Privatni dio treba se štititi putem aplikacijskog filtra koji propušta
+samo prijavljenog korisnika, a ostale prebacuje na prijavljivanje. Prvi korak za novog
+korisnika je registracija. Korisnik nakon prijavljivanja mora kreirati svoj meteorološki
+portfelj ukoliko ga još nema, s time da ih može imati više. Minimalni i maksimalan broj
+adresa za portfelj određuje se postavkama. Meteorološki portfelji ima svoj identifikator (tj.
+naziv kao jednu riječ). Korisnik kod definiranja pojedinog portfelja određuje listu adresa
+koje ulaze u portfelj, na bazi filtriranja postojećih adresa ili unosi nove adrese. Za svaku
+novu adresu provjeravaju se podaci u odnosu na definiranu operaciju web servisa iz
+{korisnicko_ime}_aplikacija_1. Za adresu za koju se ne prikupljaju podaci
+potrebno je poslati JMS poruku (naziv reda čekanja NWTiS_{korisnicko_ime}_2) u
+kojoj se nalazi adresa za koji treba početi prikupljati meteorološke podatke. Poruka treba
+biti u obliku ObjectMessage, pri čemu je naziv klase proizvoljan a njena struktura treba
+sadržavati potrebne podatke koji su prethodno spomenuti. Dodatni bodovi mogu se dobiti
+ako se za prikaz izabranih adresa za portfelj i njihovih podataka (npr. koordinate, trenutna
+temp i sl.) koristi Google Maps JavaScript API.
+Prijavljeni korisnik može pregledavati trenutne, povijesne (od-do) i sl. meteorološke
+podatke za adrese izabranog portfelja, uz straničenje, na bazi web servisa koje pruža
+{korisnicko_ime}_aplikacija_1.
+Administrator sustava može pregledavati poruke u poštanskom sandučiću (adresa
+poslužitelja, korisničko ime i lozinka definiraju se u postavkama). Pri tome može izabrati
+mapu/direktorij u kojem pregledava poruke. Nazivi mapa preuzimaju se od mape
+poštanskog sandučića korisnika email poslužitelja. Izabrane poruke može obrisati.
+Administrator sustava može pregledavati dnevnik rada uz filtriranje (vremenski interval oddo,
+korisnik i sl) i straničenje.
+Četvrti zadatak je pružanje popisa aktivnih (trenutno prijavljenih) Web korisnika, popisa
+portfelja izabranog korisnika (na bazi putanje), popis adresa iz izabranog portfelja
+izabranog korisnika (na bazi putanje) putem RESTful web servisa (XML ili JSON).
+Pristup do podataka u bazi podataka treba biti realiziran putem ORM-a tj. putem session,
+entity bean-ova i criteria API.
+<br/>
+<br/>
+
+3. enterprise aplikacija ({korisnicko_ime}_aplikacija_3) koja ima EJB i Web
+module. Aplikacija preuzima dvije vrste JMS poruka (kao MessageDriven Bean) za stanje
+obrade email poruka i adresa za koji treba početi preuzimati meteorološke podatke. Kod
+primitka JMS poruke za adresu potrebno je provjeriti status prikupljanja meteoroloških
+podataka za traženu adresu putem slanja komande USER korisnik; PASSWD
+lozinka; TEST „adresa“; socket serveru iz
+{korisnicko_ime}_aplikacija_1 (postavkom se određuje adresa i port). Podaci
+za administratorsko korisničko ime i lozinku definiraju se u postavkama. Ukoliko se još ne
+prikupljaju podaci, šalje se zahtjev USER korisnik; PASSWD lozinka; ADD
+„adresa“; da se počne s preuzimanjem meteoroloških podataka za traženu adresu.
+Primljene JMS poruke spremaju se u memoriji aplikacije. Ako aplikacija prestaje s radom,
+potrebno je poruke serijalizirati na vanjski spremnik (naziv datoteke u postavkama,
+smještena u WEB-INF direktoriju). Kada se aplikacija podiže potrebno je učitati
+serijalizirane poruke (ako postoji datoteka) u memoriju aplikacije.
+Drugi zadatak je korisnički dio odnosno web modul koji treba realizirati putem JSF
+(facelets) ili PrimeFaces. On služi za pregled spremljenih JMS poruka. Pomoću websocketa
+treba obavijestiti pregled poruka da je stigla nova JMS poruka te treba osvježiti pregled.
+Korisnik može brisati izabrane poruke ili sve poruke. Korisnik može pozivom RESTful
+web servisa dohvatiti i ispisati podatke za aktivne korisnike
+{korisnicko_ime}_aplikacija_2, za izabranog aktivnog korisnika ispisati nazive
+njegovih portfelja ili ispisati adrese za izabrani portfelj. Za jedan od prethodno ispisanih
+adresa može tražiti trenutne meteorološke podatke putem slanja komande USER
+korisnik; PASSWD lozinka; GET „adresa“; socket serveru iz
+{korisnicko_ime}_aplikacija_1 te ih ispisati. Preporučuje se upravljački dio
+putem kojeg se mogu slati komande na socket server iz
+{korisnicko_ime}_aplikacija_1, posebno za upravljanje preuzimanja
+meteoroloških podataka.
+<br/>
+<br/>
+<h2>1. jovidic_aplikacija_1</h2>
+<br/>
+Prva aplikacija je EE6 Web aplikacija koja se nalazi na Web poslužitelju Tomvat i ima JSP korisničko sučelje.
+Koristi tablice iz baze podataka nwtis_jovidic_bp:
+jovidic_adrese - sadrži adrese za koje se skupljaju meteo podaci
+jovidic_aplikacijski_dnevnik - sadrži unose korisničkih aktivnosti na web aplikaciji
+jovidic_korisnici - sadrži korisnike
+jovidic_meteo - sadrži prikupljene meteo podatke
+jovidic_odbacene_komande - sadrži neispravne, odbačene komande poslane na socket server
+jovidic_dnevnik - sadrži sve ispravne komande upućene na socket server
+korisnicke_uloge - sadrži korisničke uloge u sustavu
+
+Aplikacija prikuplja važeće meteorološke podatke sa Weather Bug servisa za zadane adrese u bazi podataka, šalje email poruku s informacijama vremenu trajanja obrade komandi,
+sadrži servlet koji kontrolira prikaze podataka i unos u bazu podataka kao i web servis pomoću kojeg pruža određene podatke.
+Dio aplikacije je i socket server koji prima komande na portu određenom konfiguracijom te na temelju komande pruža važeći odgovor.
+<br/>
+<br/>
+
+<h2>2. jovidic_aplikacija_2</h2>
+<br/>
+Druga aplikacija je EE7 Web aplikacija sa PrimeFaces sučeljem koja koristi tablicu jovidic_korisnici iz baze podataka
+nwtis_jovidic_bp_2 pomoću Criteria API te obrađuje email poruke i premješta ih u odgovarajuću datoteku. Na kraju svakog
+ciklusa oberade šalje JMS poruku u red čekanja te koristi SOAP web servis iz prve aplikacije.
+Aplikacija ima certifikat i zaštićen pristup pomoću FORM autentikacije.
+Na početku aplikacije korisnik odabire jedan od tri dostupna jezika koji će mu biti aktivan tijekom korištenja aplikacije.
+Javnom dijelu aplikacije mogu pristupiti svi korisnici te pregledavati meteo podatke, adrese, važeće meteo podatke itd.
+Novi korisnik se može registrirati dok postojeći se može prijaviti te mu je dozvoljen pristup u privatni dio aplikacije.
+Privatni dio aplikacije nije realiziran.
+<br/>
+<br/>
+<h2>3. jovidic_aplikacija_3</h2>
+<br/>
+Treća aplikacija prima JMS poruke iz druge aplikacije te je websocket obavještava o promjenama te osvježava stranicu.
+Također, moguće je iz treće aplikacije slati komande socket serveru u prvoj aplikaciji.</div>
+    </body>
+</html>

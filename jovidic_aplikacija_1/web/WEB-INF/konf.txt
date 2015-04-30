@@ -1,0 +1,12 @@
+cKey=H1o8KrNH1csjLDYXWyj3AqOT34JsyQGm
+sKey=m9QNpUXSIAlZQZRl
+interval=30
+localhost=127.0.0.1
+
+port=8055
+emailPort=8088
+korisnickaLozinka=123456
+korisnickoIme=jovidic@nwtis.nastava.foi.hr
+posiljatelj=jovidic@nwtis.nastava.foi.hr
+primatelj=jovidic@nwtis.nastava.foi.hr
+tema=NWTIS

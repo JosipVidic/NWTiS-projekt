@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <f:view locale="#{lokalizacija.vazecaLokalizacija}">
+        <h:head>
+            <title>#{i18n.adrese_prikaz_naslov}</title>
+        </h:head>
+
+        <h:body>
+            <h1>#{i18n.adreseNaslov}</h1>
+            <h:form id="glavnaForma">
+
+                <p:dataTable var="m" value="#{public.adrese}" paginator="true" rows="15"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="10,15,25,50,100"  id="adrese">
+
+                    <p:column headerText="#{i18n.adresaAdresa}">
+                        <h:outputText value="#{m.adresa}" />
+                    </p:column>
+                    <p:column headerText="#{i18n.adresaLat}">
+                        <h:outputText value="#{m.lat}" />
+                    </p:column>
+                    <p:column headerText="#{i18n.adresaLon}">
+                        <h:outputText value="#{m.lon}" />
+                    </p:column>
+
+                </p:dataTable>
+
+
+
+            </h:form>
+
+
+        </h:body>
+
+    </f:view>
+</html>
+

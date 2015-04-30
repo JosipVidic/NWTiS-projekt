@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{lokalizacija.vazecaLokalizacija}">
+    <h:head>
+        <title>Select</title>
+        <h:outputStylesheet library="css" name="osnovna.css"/>
+
+    </h:head>
+
+    <h:body>
+        <h:link class="linkas" value="#{i18n.odabir_email}" outcome="email"></h:link>
+        <h:link class="linkas" value="#{i18n.odabir_adrese}" outcome="adrese"></h:link>
+        <h:link class="linkas" value="#{i18n.odabir_meteo}" outcome="test"></h:link>
+        <h:link class="linkas" value="#{i18n.odabir_zadnjivazeci}" outcome="vazeci"></h:link>
+        <h:link class="linkas" value="#{i18n.odabir_login}" outcome="login"></h:link>
+        <h:link class="linkas" value="#{i18n.odabir_privatno}" outcome="private"></h:link>
+        <h:link class="linkas" value="#{i18n.odabir_registracija}" outcome="registracija"></h:link>
+    
+    </h:body>
+    </f:view>
+</html>
+

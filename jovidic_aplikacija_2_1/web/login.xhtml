@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+        <f:view locale="#{lokalizacija.vazecaLokalizacija}">
+    <h:head>
+        <title>login</title>
+           <style>
+            body{
+                background-color: #fff;
+            }
+            
+            .centered {
+                position: absolute;
+                margin: auto;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                width: 10em;
+                height: 8em;
+
+            }
+            .input{
+                margin: 0;
+                width: 10em;
+                height: 2em;
+                padding: 0;
+                
+            }
+            .btn{
+                height: 3em;
+                width: 10.3em;
+                padding: 0;
+                margin-top: 1em;
+            }
+        </style>
+    </h:head>
+        <h:body>
+            <div class="centered">
+            <h:form>
+
+                <h:inputText class="input" id="username" value="#{login.korIme}"/><br/>
+
+
+                <h:inputText class="input"  id="password" value="#{login.lozinka}"/><br/>
+
+                <h:commandButton class="btn" value="#{i18n.login_login}" action="#{login.loginUser()}"/>
+
+            </h:form>
+            </div>
+        </h:body>
+    </f:view>
+</html>
+
